@@ -62,7 +62,7 @@ public class HomePageController {
         List<Product> productsTypeThit = this.productService.fetchProductByType("thuc-pham-giau-protein");
         List<Product> productsTypeThucUong = this.productService.fetchProductByType("thuc-uong");
         List<Product> productsTypeTinhBot = this.productService.fetchProductByType("thuc-pham-chua-tinh-bot");
-
+        model.addAttribute("nameProducts", productService.getAllNames());
         model.addAttribute("products", products);
         model.addAttribute("productsTypeThucUongs", productsTypeThucUong);
         model.addAttribute("productsTypeRauCus", productsTypeRauCu);
