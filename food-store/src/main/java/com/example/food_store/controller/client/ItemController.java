@@ -213,6 +213,7 @@ public class ItemController {
         if (qs != null && !qs.isBlank()) {
             qs = qs.replace("page=" + page, "");
         }
+        model.addAttribute("nameProducts", productService.getAllNames());
         model.addAttribute("products", products);
         model.addAttribute("currentPage", page);
         model.addAttribute("totalPages", prs.getTotalPages());

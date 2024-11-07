@@ -1,6 +1,32 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+        <style>
+            /* Đảm bảo form có vị trí tương đối */
+            .input-group {
+                position: relative; /* Cho phép các phần tử con như autocomplete-item có thể đặt vị trí tuyệt đối */
+            }
 
+            /* Kiểu dáng cho danh sách gợi ý autocomplete */
+            .autocomplete-items {
+                position: absolute;
+                top: 100%; /* Đặt gợi ý dưới thanh tìm kiếm */
+                left: 0;
+                width: 100%; /* Chiều rộng bằng với thanh tìm kiếm */
+                background-color: #fff;
+                border: 1px solid #d4d4d4;
+                max-height: 200px;
+                overflow-y: auto;
+                z-index: 9999;
+            }
+
+            /* Kiểu dáng cho item gợi ý khi được chọn */
+            .autocomplete-active {
+                background-color: #d4d4d4;
+            }
+
+
+
+        </style>
         <!-- Navbar start -->
         <div class="container-fluid fixed-top " style="background-color: #E8E8E8;">
 
@@ -21,11 +47,18 @@
                         </div>
                         <div class="d-flex m-3 me-0">
 
+
                             <c:if test="${not empty pageContext.request.userPrincipal}">
-                                <button
-                                    class="btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4"
-                                    data-bs-toggle="modal" data-bs-target="#searchModal"><i
-                                        class="fas fa-search text-primary"></i></button>
+
+                                <form action="/products" method="get" class="input-group rounded">
+                                    <label for="tags"></label>
+                                    <input name="text" type="text" id = "tags" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                                    <button type="submit" class="input-group-text border-0"   id="search-addon">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </form>
+                                <div id="autocomplete-list" class="autocomplete-items"></div>
+
                                 <a href="/cart" class="position-relative me-4 my-auto">
                                     <i class="fa fa-shopping-bag fa-2x"></i>
                                     <span

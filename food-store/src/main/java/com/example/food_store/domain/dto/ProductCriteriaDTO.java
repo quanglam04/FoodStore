@@ -11,6 +11,15 @@ public class ProductCriteriaDTO {
     private Optional<String> sort;
     private Optional<List<String>> type;
     private Optional<List<String>> customertarget;
+    private Optional<String> text;
+
+    public Optional<String> getText() {
+        return text;
+    }
+
+    public void setText(Optional<String> text) {
+        this.text = text;
+    }
 
     public Optional<List<String>> getType() {
         return type;

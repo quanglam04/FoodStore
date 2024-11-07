@@ -1,5 +1,6 @@
 package com.example.food_store.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -68,12 +69,17 @@ public class ProductService {
 
                 && productCriteriaDTO.getPrice() == null
                 && productCriteriaDTO.getType() == null
-                && productCriteriaDTO.getCustomertarget() == null) {
+                && productCriteriaDTO.getCustomertarget() == null
+                && productCriteriaDTO.getText() == null) {
             return this.productRepository.findAll(page);
         }
 
         Specification<Product> combinedSpec = Specification.where(null);
-
+        if (productCriteriaDTO.getText() != null && productCriteriaDTO.getText().isPresent()) {
+            Specification<Product> currentSpecs = ProductSpecification
+                    .nameLike(productCriteriaDTO.getText().get());
+            combinedSpec = combinedSpec.and(currentSpecs);
+        }
         if (productCriteriaDTO.getTarget() != null && productCriteriaDTO.getTarget().isPresent()) {
             Specification<Product> currentSpecs = ProductSpecification
                     .matchListTarget(productCriteriaDTO.getTarget().get());
@@ -292,4 +298,12 @@ public class ProductService {
         return this.productRepository.count();
     }
 
+    public List<String> getAllNames(){
+        List<Product> products = this.productRepository.findAll();
+        List<String> names = new ArrayList<String>();
+        for (Product product : products) {
+            names.add("\""+ product.getName() +"\"");
+        }
+        return names;
+    }
 }
