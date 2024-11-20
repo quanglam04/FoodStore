@@ -25,7 +25,7 @@ import jakarta.servlet.http.HttpSession;
 public class CustomSuccessHandler implements AuthenticationSuccessHandler {
 
     @Autowired
-    private UserService userService;
+    private  UserService userService;
 
     protected String determineTargetUrl(final Authentication authentication) {
 

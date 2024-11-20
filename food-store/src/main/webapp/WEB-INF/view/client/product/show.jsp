@@ -380,16 +380,9 @@
                     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
                     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
                     <script
-                        src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"></script>
+                        src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js">
+                    </script>
                     <script>
-
-                        <%--$(function() {--%>
-                        <%--    var availableTags = ${nameProducts};--%>
-                        <%--    $("#tags").autocomplete({--%>
-                        <%--        source: availableTags--%>
-                        <%--    });--%>
-                        <%--    minLength: 1--%>
-                        <%--});--%>
                         var nameProducts = ${nameProducts};
                         function autocomplete(inp, arr) {
                             var currentFocus;
